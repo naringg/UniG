@@ -1,8 +1,15 @@
 using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
 
 public class EnemyMove : MonoBehaviour
 {
+    // 플레이어를 찾았을 때 실행될 이벤트 보관함
+    [Header("UnityEvents")]
+    public UnityEvent OnDetected; 
+    public UnityEvent OnLost;
+
+    [Header("Public Components")]
     public GameObject player;
     public GameObject noticeMark;
 
@@ -35,6 +42,7 @@ public class EnemyMove : MonoBehaviour
         {
             vecDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
             isMoving = true;
+            OnDetected.Invoke();
 
             if (!keepingNoticeMark)
             {
@@ -46,6 +54,7 @@ public class EnemyMove : MonoBehaviour
         {
             isMoving = false;
             keepingNoticeMark = false;
+            OnLost.Invoke();
         }
         //-------------------------------------------
 
