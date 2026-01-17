@@ -14,12 +14,18 @@ public class Shield : MonoBehaviour
 
     [SerializeField] private float moveSpeed = 5f;
 
-    private SpriteRenderer shieldRenderer;
+    private SpriteRenderer shieldRenderer, parentMove;
     private Coroutine moveRoutine;
-
+    
     void Start()
     {
         shieldRenderer = GetComponent<SpriteRenderer>();
+        parentMove = transform.parent.GetComponent<SpriteRenderer>();
+    }
+
+    void Update()
+    {
+        shieldRenderer.flipX = parentMove.flipX;
     }
 
     public void ShieldToFront()
@@ -31,20 +37,33 @@ public class Shield : MonoBehaviour
 
     IEnumerator MoveShield(Vector3 targetPos, Quaternion targetRot, int targetOrder)
     {
-        if (shieldRenderer.sortingOrder == 1) shieldRenderer.sortingOrder = -1;
+        if (shieldRenderer.sortingOrder == 1) shieldRenderer.sortingOrder = targetOrder;
 
-        while (Vector3.Distance(transform.localPosition, targetPos) > 0.01f ||
-               Quaternion.Angle(transform.localRotation, targetRot) > 0.1f)
-        {
-            transform.localPosition = Vector3.Lerp(transform.localPosition, targetPos, Time.deltaTime * moveSpeed);
-            transform.localRotation = Quaternion.Lerp(transform.localRotation, targetRot, Time.deltaTime * moveSpeed);
+        while (true)
+        {   
+            float flipMultiplier = parentMove.flipX ? 1f : -1f;
+            Vector3 realTargetPos = new Vector3(targetPos.x * flipMultiplier, targetPos.y, targetPos.z);
+            
+            float targetZAngle = targetRot.eulerAngles.z * flipMultiplier;
+            Quaternion realTargetRot = Quaternion.Euler(0, 0, targetZAngle);
+
+            transform.localPosition = Vector3.Lerp(transform.localPosition, realTargetPos, Time.deltaTime * moveSpeed);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, realTargetRot, Time.deltaTime * moveSpeed);
+
+            if (Vector3.Distance(transform.localPosition, realTargetPos) < 0.01f && 
+                Quaternion.Angle(transform.localRotation, targetRot) < 0.1f) 
+            {
+                if (shieldRenderer.sortingOrder == -1) shieldRenderer.sortingOrder = targetOrder;
+                break;
+            }
+
             yield return null;
         }
 
         if (shieldRenderer.sortingOrder == -1) shieldRenderer.sortingOrder = targetOrder;
-        transform.localPosition = targetPos;
-        transform.localRotation = targetRot;
-        moveRoutine = null;
+        //transform.localPosition = targetPos;
+        //transform.localRotation = targetRot;
+        moveRoutine = null;        
     }   
 
     public void ShieldToBack()

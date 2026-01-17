@@ -17,6 +17,8 @@ public class EnemyMove : MonoBehaviour
     Vector2 vecDir;
     SpriteRenderer sprite;
 
+    public static bool detectingPlayer = false; // 적을 발견 햇는지 안햇는지
+
     public float distance = 3; // 범위 안에 플레이어가 들어오면 enemy가 플레이어 쪽으로 이동하게 만드는, 그 범위를 담당하는 변수
     public float speed = 1;
     public float randomMoveSpeed = 1;
@@ -40,6 +42,7 @@ public class EnemyMove : MonoBehaviour
         // 플레이어와의 거리 계산 로직
         if (distance >= Mathf.Abs(player.transform.position.x - transform.position.x))
         {
+            detectingPlayer = true;
             vecDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
             isMoving = true;
             OnDetected.Invoke();
@@ -52,6 +55,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
+            detectingPlayer = false;
             isMoving = false;
             keepingNoticeMark = false;
             OnLost.Invoke();
