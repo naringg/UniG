@@ -22,8 +22,9 @@ public class EnemyMove : MonoBehaviour
     public float randomMoveSpeed = 1; // 적을 발견하지 않을 때, 즉 랜덤으로 움직일 때 사용되는 이동 변수
     public float rayOffset = 1;
     public bool canMove = true; // 타 스크립트에서 제어할 수 있도록 하는, 움직임 전체를 통제하는 역할
+    public bool switchFlipX = false; // 타 스크립트에서 flipX를 제어할 수 있도록 하는, flipX 전체를 통제하는 역할
 
-    [SerializeField]bool isMoving = false; // 적을 발견할 때 사용하는 이동 변수
+    [SerializeField]bool OnDetectPlayer = false; // 적을 발견할 때 사용하는 변수
     bool keepingNoticeMark = false;
     int randomMoveNum;
 
@@ -42,7 +43,7 @@ public class EnemyMove : MonoBehaviour
         if (distance >= Mathf.Abs(player.transform.position.x - transform.position.x))
         {
             vecDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
-            if (canMove) isMoving = true;
+            if (canMove) OnDetectPlayer = true;
             OnDetected.Invoke();
 
             if (!keepingNoticeMark)
@@ -53,25 +54,29 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
-            isMoving = false;
+            OnDetectPlayer = false;
             keepingNoticeMark = false;
             OnLost.Invoke();
         }
         //-------------------------------------------
-
+        
         // Enemy의 FlipX에 대한 코드
-        if (isMoving) // enemy가 플레이어를 추격중이라면 그때의 방향벡터로 flipX를 결정
+        if (switchFlipX == false)
         {
-            sprite.flipX = vecDir.x < 0;
+            if (OnDetectPlayer) // enemy가 플레이어를 추격중이라면 그때의 방향벡터로 flipX를 결정
+            {
+                sprite.flipX = vecDir.x < 0;
+            }
+            else // 추적 중이 아니고, 랜덤 이동중일 때는 case에 맞게 flipX 설정
+            {
+                if (randomMoveNum == 1) sprite.flipX = false;
+                else if (randomMoveNum == -1) sprite.flipX = true;
+            }
         }
-        else // 추적 중이 아니고, 랜덤 이동중일 때는 case에 맞게 flipX 설정
-        {
-            if (randomMoveNum == 1) sprite.flipX = false;
-            else if (randomMoveNum == -1) sprite.flipX = true;
-        }
+        
         //-----------------------------------------------
 
-        if (!isMoving) // Ray를 이용하여 낭떠러지 유무 체크.
+        if (!OnDetectPlayer) // Ray를 이용하여 낭떠러지 유무 체크.
         {
             Vector2 rayOrigin = new Vector2(rigid.position.x + (randomMoveNum * rayOffset), rigid.position.y - 1);
             Debug.DrawRay(rayOrigin, Vector2.down, Color.green);
@@ -89,7 +94,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (!canMove) return;
 
-        if (isMoving)
+        if (OnDetectPlayer)
         {
             rigid.linearVelocity = vecDir * speed;
         }
@@ -122,7 +127,7 @@ public class EnemyMove : MonoBehaviour
     {
         while (true)
         {
-            if (!isMoving)
+            if (!OnDetectPlayer)
             {
                 randomMoveNum = Random.Range(-1, 2);
             }
