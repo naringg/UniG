@@ -6,6 +6,7 @@ public class Enemy_Rush : MonoBehaviour
     Animator animator;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
+    EnemyMove enemyMove;
 
     [SerializeField] private float rushPower;
 
@@ -17,12 +18,7 @@ public class Enemy_Rush : MonoBehaviour
         animator = GetComponent<Animator>();
         rigid = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        enemyMove = GetComponent<EnemyMove>();
     }
 
     public void OnDetectedPlayer() 
@@ -30,6 +26,7 @@ public class Enemy_Rush : MonoBehaviour
         if (!coroutineRoop) // 코루틴이 중첩되지 않도록 bool타입으로 통제.
         {
             coroutineRoop = true;
+            enemyMove.canMove = false;
             StartCoroutine("RushWaitingState");
         }
             
@@ -42,13 +39,13 @@ public class Enemy_Rush : MonoBehaviour
 
     IEnumerator RushWaitingState()
     {
-        animator.SetBool("OnDetected", true);
         rigid.linearVelocity = Vector2.zero;
+        animator.SetBool("OnDetected", true);
         yield return new WaitForSeconds(1.5f);
-        Rush();
+        StartCoroutine("Rush");
     }
 
-    void Rush()
+    IEnumerator Rush()
     {
         animator.SetTrigger("Rush");
         if (spriteRenderer.flipX)
@@ -56,6 +53,9 @@ public class Enemy_Rush : MonoBehaviour
         else 
             rigid.AddForce(Vector2.right * rushPower, ForceMode2D.Impulse);
 
+        yield return new WaitForSeconds(0.5f);
+
         coroutineRoop = false;
+        enemyMove.canMove = true; // 돌진이 아닌 일반적인 움직임을 다시 작동시킴.
     }
 }

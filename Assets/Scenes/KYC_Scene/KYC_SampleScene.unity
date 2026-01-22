@@ -232,10 +232,12 @@ MonoBehaviour:
       m_Calls: []
   player: {fileID: 1142191854}
   noticeMark: {fileID: 1746173880}
-  distance: 5
-  speed: 2
-  randomMoveSpeed: 0.7
+  distance: 3
+  speed: 1
+  randomMoveSpeed: 1
   rayOffset: 1
+  canMove: 1
+  isMoving: 0
 --- !u!212 &485519246
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -790,6 +792,8 @@ MonoBehaviour:
   speed: 0
   randomMoveSpeed: 1
   rayOffset: 1
+  canMove: 0
+  isMoving: 0
 --- !u!212 &853442961
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1575,9 +1579,9 @@ GameObject:
   - component: {fileID: 1470862218}
   - component: {fileID: 1470862217}
   - component: {fileID: 1470862216}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 'Enemy_rush '
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1626,10 +1630,12 @@ MonoBehaviour:
         m_CallState: 2
   player: {fileID: 1142191854}
   noticeMark: {fileID: 843917258}
-  distance: 5
+  distance: 6
   speed: 1
   randomMoveSpeed: 1
   rayOffset: 1
+  canMove: 1
+  isMoving: 0
 --- !u!114 &1470862217
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1642,7 +1648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55edc297fdb642842a463c7429914f78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rushPower: 10
+  rushPower: 7
 --- !u!95 &1470862218
 Animator:
   serializedVersion: 7
