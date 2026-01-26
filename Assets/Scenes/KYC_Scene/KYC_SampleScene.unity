@@ -2121,7 +2121,7 @@ Transform:
   m_GameObject: {fileID: 1142191854}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.55, y: -2, z: 0}
+  m_LocalPosition: {x: -6.59, y: -2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3094,9 +3094,10 @@ GameObject:
   - component: {fileID: 2115624383}
   - component: {fileID: 2115624382}
   - component: {fileID: 2115624387}
-  m_Layer: 0
-  m_Name: Self_destruct_Monster_0
-  m_TagString: Untagged
+  - component: {fileID: 2115624388}
+  m_Layer: 6
+  m_Name: Boom_Monster
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3115,14 +3116,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   OnDetected:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115624387}
+        m_TargetAssemblyTypeName: Enemy_Self_destruct, Assembly-CSharp
+        m_MethodName: OnDetectedPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnLost:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2115624387}
+        m_TargetAssemblyTypeName: Enemy_Self_destruct, Assembly-CSharp
+        m_MethodName: OnLeftPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   player: {fileID: 1142191854}
   noticeMark: {fileID: 581647959}
-  distance: 8
-  speed: 4
+  distance: 6
+  speed: 2
   randomMoveSpeed: 1
   rayOffset: 1
   canMove: 1
@@ -3166,7 +3191,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.05, y: 1.57}
+    oldSize: {x: 1.23, y: 1.62}
     newSize: {x: 1.05, y: 1.57}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -3292,6 +3317,29 @@ MonoBehaviour:
   explosionDamage: 40
   explosionRadius: 4.5
   HP: 10
+  flashTime: 2
+--- !u!95 &2115624388
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2115624381}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c4f3b6183f938d64497e6b192435ddf1, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
