@@ -370,7 +370,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.7669878, y: 1.7777908}
+  m_Size: {x: 1.966988, y: 1.977791}
   m_EdgeRadius: 0
 --- !u!114 &117703681
 MonoBehaviour:
@@ -384,6 +384,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38d9900284d58ca4293a9b8b7020dda7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosion:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2115624387}
+        m_TargetAssemblyTypeName: Enemy_Self_destruct, Assembly-CSharp
+        m_MethodName: Self_Explosion
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &154384377
 GameObject:
   m_ObjectHideFlags: 0
@@ -1830,6 +1845,7 @@ GameObject:
   - component: {fileID: 1142191857}
   - component: {fileID: 1142191856}
   - component: {fileID: 1142191855}
+  - component: {fileID: 1142191861}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -2112,6 +2128,18 @@ Transform:
   - {fileID: 519420032}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1142191861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1142191854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc61ebc25df9dc04bb43b023722260c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1189768810
 GameObject:
   m_ObjectHideFlags: 0
@@ -3093,8 +3121,8 @@ MonoBehaviour:
       m_Calls: []
   player: {fileID: 1142191854}
   noticeMark: {fileID: 581647959}
-  distance: 3
-  speed: 1
+  distance: 8
+  speed: 4
   randomMoveSpeed: 1
   rayOffset: 1
   canMove: 1
@@ -3257,6 +3285,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a76d025febc33d40b06f9d0f9131cd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  explosionPrefab: {fileID: 2994790468617666611, guid: b9c593eda17e7b246bd26765f3429352, type: 3}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  explosionDamage: 40
+  explosionRadius: 4.5
+  HP: 10
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
