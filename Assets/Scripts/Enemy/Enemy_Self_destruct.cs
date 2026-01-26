@@ -44,17 +44,10 @@ public class Enemy_Self_destruct : MonoBehaviour
 
             spriteRenderer.color = Color.Lerp(normalColor, dangerColor, blinkValue);
         }
-        
-        if (startedBoom)
-        {
-            float blinkValue = Mathf.Abs(Mathf.Sin(Time.time));
-
-            spriteRenderer.color = Color.Lerp(dangerColor, boomColor, 0.1f * 2);
-        }
 
         if (!onDetectedPlayer && spriteRenderer.color != normalColor) // 만약 적 추적이 끝났는데, 아직 색상이 평범한 색으로 돌아오지 않았을 경우, 부드럽게 원래 색상으로 돌아가게 함.
         {
-            spriteRenderer.color = Color.Lerp(spriteRenderer.color, normalColor, 0.1f);
+            spriteRenderer.color = Color.Lerp(spriteRenderer.color, normalColor, 0.05f);
         }
     }
 
@@ -71,14 +64,28 @@ public class Enemy_Self_destruct : MonoBehaviour
     public void Self_Explosion()
     {
         enemyMove.canMove = false; // 폭발 시작 시 움직임 통제
-        startedBoom = true;
         StartCoroutine("Explosion");
     }
 
     IEnumerator Explosion()
     {
-        yield return new WaitForSeconds(3.0f); // 폭발까지 대기 시간 3초.
+        float duration = 3.0f; // 목표 시간
+        float timer = 0f;      // 누적 시간
 
+        animator.SetTrigger("Boom");
+
+        while(timer < duration)
+        {
+            timer += Time.deltaTime;
+        
+            float t = timer / duration; 
+
+            // 비율(t)을 사용하여 색상 변경
+            spriteRenderer.color = Color.Lerp(dangerColor, boomColor, t);
+            
+            yield return null;
+        }
+        
         Boom();
     }
 
