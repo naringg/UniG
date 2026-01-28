@@ -1,16 +1,37 @@
 using UnityEngine;
+using TMPro;
 
 public class Portal : MonoBehaviour
 {
+    [Header("Destination")]
     public string targetSceneName;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Vector2 targetSpawnPosition;
+    public KeyCode interactKey = KeyCode.UpArrow;
 
-    public KeyCode interactKey = KeyCode.UpArrow; //이동조작 해당키
+    [Header("UI")]
+    public TMP_Text floatingText;     // 포탈 위 텍스트
+    public string message;
 
-    public bool CanInteract(GameObject player)
+    private void Awake()
     {
-        // 조건(퀘스트 완료, 레벨 등)
-        return true;
+        if (floatingText != null)
+        {
+            floatingText.text = message;
+            floatingText.gameObject.SetActive(false); // 기본은 숨김
+        }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && floatingText != null)
+            floatingText.gameObject.SetActive(true);
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player") && floatingText != null)
+            floatingText.gameObject.SetActive(false);
+    }
+
+    public bool CanInteract(GameObject player) => true;
 }
