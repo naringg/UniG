@@ -229,6 +229,15 @@ MonoBehaviour:
   dashspeed: 10
   dashDuration: 0.4
   doubleTapTime: 0.25
+  rb: {fileID: 0}
+  moveInput: {x: 0, y: 0}
+  isGrounded: 0
+  lastRightTapTime: -2
+  lastLeftTapTime: -2
+  isDashing: 0
+  dashTime: 0
+  dashDirection: 0
+  isFacingRight: 1
 --- !u!212 &93544200
 SpriteRenderer:
   m_ObjectHideFlags: 0
