@@ -4,15 +4,15 @@ using UnityEngine;
 public class BaseStat : MonoBehaviour
 {
 
-    private int BasicStat = 1;
-   private float BasicMulti = 1.0f;
+    private int BasicStat = 1; //변수들
+    private float BasicMulti = 1.0f;
 
-
-    public void SetStat(int Stat)
+    public void SetStat(int Stat) //함수
     {
         BasicStat = Stat;
     }
-    public void SetMulti(float  Multi)
+
+    public void SetMulti(float Multi)
     {
         BasicMulti = Multi;
     }
@@ -24,7 +24,7 @@ public class BaseStat : MonoBehaviour
 
     public void AddSubStat(int Stat)
     {
-        if(Stat < 0)
+        if (Stat < 0)
         {
             Mathf.Max(BasicStat + Stat, 0);
         }
@@ -34,7 +34,7 @@ public class BaseStat : MonoBehaviour
         }
     }
 
-    public void AddSubMulti(float  Multi)
+    public void AddSubMulti(float Multi)
     {
         if (Multi < 0)
         {
@@ -47,7 +47,7 @@ public class BaseStat : MonoBehaviour
     }
     public void BuffNerfStat(int Stat, float Time)
     {
-        StartCoroutine(CoroutineStat(Stat,Time));
+        StartCoroutine(CoroutineStat(Stat, Time));
     }
 
     public IEnumerator CoroutineStat(int Stat, float Time)
@@ -71,9 +71,8 @@ public class BaseStat : MonoBehaviour
         yield return new WaitForSeconds(Time);
         AddSubMulti(-Stat);
 
+        
+
     }
-
-
-
 
 }
