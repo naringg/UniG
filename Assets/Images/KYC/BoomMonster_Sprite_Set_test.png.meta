@@ -1,0 +1,364 @@
+fileFormatVersion: 2
+guid: 218f3418f5ec2984a984f57fdf9df769
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 5477113233236640252
+    second: BoomMonster_Sprite_Set_test_0
+  - first:
+      213: 6694836576771816013
+    second: BoomMonster_Sprite_Set_test_1
+  - first:
+      213: -4971693721342567636
+    second: BoomMonster_Sprite_Set_test_2
+  - first:
+      213: 4505691713064094273
+    second: BoomMonster_Sprite_Set_test_3
+  - first:
+      213: -3266420287712966577
+    second: BoomMonster_Sprite_Set_test_4
+  - first:
+      213: 8804025989926997986
+    second: BoomMonster_Sprite_Set_test_5
+  - first:
+      213: 5117336114397557248
+    second: BoomMonster_Sprite_Set_test_6
+  - first:
+      213: -2297322443276306164
+    second: BoomMonster_Sprite_Set_test_7
+  - first:
+      213: -1911621054461670119
+    second: BoomMonster_Sprite_Set_test_8
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 403
+        width: 107
+        height: 184
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf149a5777d920c40800000000000000
+      internalID: 5477113233236640252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_1
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 403
+        width: 130
+        height: 177
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d4ab6c35566d8ec50800000000000000
+      internalID: 6694836576771816013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_2
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 403
+        width: 118
+        height: 185
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2b165fc6eef00bb0800000000000000
+      internalID: -4971693721342567636
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_3
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 201
+        width: 117
+        height: 183
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 14a4b98adbe678e30800000000000000
+      internalID: 4505691713064094273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_4
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 201
+        width: 123
+        height: 191
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f484db7fd085ba2d0800000000000000
+      internalID: -3266420287712966577
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_5
+      rect:
+        serializedVersion: 2
+        x: 283
+        y: 201
+        width: 117
+        height: 188
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2efc7eafdfe2e2a70800000000000000
+      internalID: 8804025989926997986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_6
+      rect:
+        serializedVersion: 2
+        x: 25
+        y: 13
+        width: 111
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 002b1fe451e640740800000000000000
+      internalID: 5117336114397557248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_7
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 13
+        width: 122
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c09bbf9d8654e10e0800000000000000
+      internalID: -2297322443276306164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BoomMonster_Sprite_Set_test_8
+      rect:
+        serializedVersion: 2
+        x: 282
+        y: 13
+        width: 123
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 91d87a777ce8875e0800000000000000
+      internalID: -1911621054461670119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      BoomMonster_Sprite_Set_test_0: 5477113233236640252
+      BoomMonster_Sprite_Set_test_1: 6694836576771816013
+      BoomMonster_Sprite_Set_test_2: -4971693721342567636
+      BoomMonster_Sprite_Set_test_3: 4505691713064094273
+      BoomMonster_Sprite_Set_test_4: -3266420287712966577
+      BoomMonster_Sprite_Set_test_5: 8804025989926997986
+      BoomMonster_Sprite_Set_test_6: 5117336114397557248
+      BoomMonster_Sprite_Set_test_7: -2297322443276306164
+      BoomMonster_Sprite_Set_test_8: -1911621054461670119
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
