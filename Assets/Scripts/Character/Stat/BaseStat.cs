@@ -1,20 +1,31 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class BaseStat : MonoBehaviour
 {
 
-    private int BasicStat = 1; //변수들
-    private float BasicMulti = 1.0f;
+    protected float BasicStat = 1; //변수들
+    protected float BasicMulti = 1.0f;
 
-    public void SetStat(int Stat) //함수
+    public Action<float> OnStatChanged;
+
+
+    public void Notice()
+    {
+        OnStatChanged?.Invoke(GetStat());
+    }
+    public virtual void SetStat(float Stat) //함수
     {
         BasicStat = Stat;
+        Notice();
     }
 
     public void SetMulti(float Multi)
     {
         BasicMulti = Multi;
+        Notice();
     }
 
     public float GetStat()
@@ -22,28 +33,31 @@ public class BaseStat : MonoBehaviour
         return BasicStat * BasicMulti;
     }
 
-    public void AddSubStat(int Stat)
+    public void AddSubStat(float Stat)
     {
         if (Stat < 0)
         {
-            Mathf.Max(BasicStat + Stat, 0);
+            BasicStat = Mathf.Max(BasicStat + Stat, 0);
+            
         }
         else
         {
-            Mathf.Min(BasicStat + Stat, 100);//최대값 정해야 함
+            BasicStat = Mathf.Min(BasicStat + Stat, 100);//최대값 정해야 함
         }
+        Notice();
     }
 
     public void AddSubMulti(float Multi)
     {
         if (Multi < 0)
         {
-            Mathf.Max(BasicStat + Multi, 0f);
+            BasicMulti = Mathf.Max(BasicMulti + Multi, 0f);
         }
         else
         {
-            Mathf.Min(BasicStat + Multi, 100f);//최대값 정해야 함
+            BasicMulti = Mathf.Min(BasicMulti + Multi, 100f);//최대값 정해야 함
         }
+        Notice();
     }
     public void BuffNerfStat(int Stat, float Time)
     {
