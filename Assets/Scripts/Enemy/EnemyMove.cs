@@ -11,11 +11,12 @@ public class EnemyMove : MonoBehaviour
 
     [Header("Public Components")]
     public GameObject player;
-    public GameObject noticeMark;
+    //public GameObject noticeMark;
 
     Rigidbody2D rigid;
     Vector2 vecDir;
     SpriteRenderer sprite;
+    Animator animator;
 
     public float distance = 3; // 범위 안에 플레이어가 들어오면 enemy가 플레이어 쪽으로 이동하게 만드는, 그 범위를 담당하는 변수
     public float speed = 1; // 적을 발견하고 나서 사용되는 이동 변수
@@ -25,15 +26,17 @@ public class EnemyMove : MonoBehaviour
     public bool switchFlipX = false; // 타 스크립트에서 flipX를 제어할 수 있도록 하는, flipX 전체를 통제하는 역할
 
     [SerializeField]bool OnDetectPlayer = false; // 적을 발견할 때 사용하는 변수
-    bool keepingNoticeMark = false;
-    bool flyingMonster = false;
+    //bool keepingNoticeMark = false;
+    bool flyingMonster = false; // 이 몬스터가 지금 공중몹인지 아닌지~
+    bool moving = false; // 현재 몬스터가 이동중인지 아닌지~
     int randomMoveNum;
-
+    
     void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        noticeMark.gameObject.SetActive(false);
+        animator = GetComponent<Animator>();
+        //noticeMark.gameObject.SetActive(false);
         foreach (Transform child in transform)
     {
         if (child.CompareTag("Flying"))
@@ -51,23 +54,38 @@ public class EnemyMove : MonoBehaviour
         // 플레이어와의 거리 계산 로직
         if (distance >= Mathf.Abs(player.transform.position.x - transform.position.x))
         {
-            vecDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
+            if (flyingMonster)
+            {
+                
+            }
+
+            else
+            {
+                vecDir = new Vector2(player.transform.position.x - transform.position.x, 0).normalized;
+            }
+            
             if (canMove) OnDetectPlayer = true;
             OnDetected.Invoke();
 
-            if (!keepingNoticeMark)
+            /*if (!keepingNoticeMark)
             {
                 keepingNoticeMark = true;
                 StartCoroutine("IsNoticeMark"); // 플레이어를 인식하면 말풍선 띄우기.
-            }
+            }*/
         }
         else
         {
             OnDetectPlayer = false;
-            keepingNoticeMark = false;
+            //keepingNoticeMark = false;
             OnLost.Invoke();
         }
         //-------------------------------------------
+
+        // 이동 애니메이션 재생
+        if (moving)
+            animator.SetBool("Walk", true);
+        else   
+            animator.SetBool("Walk", false);
         
         // Enemy의 FlipX에 대한 코드
         if (switchFlipX == false)
@@ -105,6 +123,7 @@ public class EnemyMove : MonoBehaviour
 
         if (OnDetectPlayer)
         {
+            moving = true;
             rigid.linearVelocity = vecDir * speed;
         }
 
@@ -114,18 +133,22 @@ public class EnemyMove : MonoBehaviour
                 {
                     // -1 = 왼쪽 이동
                     case -1:
+                        moving = true;
                         rigid.linearVelocity = Vector2.left * randomMoveSpeed;
                         break;
                     // 1 = 오른쪽 이동
                     case 1:
+                        moving = true;
                         rigid.linearVelocity = Vector2.right * randomMoveSpeed;
                         break;
                     // 0 = 가만히 서있음
                     case 0:
+                        moving = false;
                         rigid.linearVelocity = Vector2.zero;
                         break;
                     // 혹시 몰라 넣어둠. 다른 숫자를 받으면 가만히 서있게 하기.
                     default :
+                        moving = false;
                         rigid.linearVelocity = Vector2.zero;
                         break;
                 }
@@ -144,10 +167,10 @@ public class EnemyMove : MonoBehaviour
         }
     }
 
-    IEnumerator IsNoticeMark()
+    /*IEnumerator IsNoticeMark()
     {
         noticeMark.gameObject.SetActive(true);
         yield return new WaitForSeconds(1.0f);
         noticeMark.gameObject.SetActive(false);
-    }
+    }*/
 }

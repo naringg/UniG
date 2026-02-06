@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Enemy_Rush : MonoBehaviour
 {
-    public PlayerMove player;
+    public GameObject player;
 
     Animator animator;
     Rigidbody2D rigid;
@@ -53,19 +53,19 @@ public class Enemy_Rush : MonoBehaviour
 
     IEnumerator Rush()
     {
-        animator.SetTrigger("Rush");
+        animator.SetBool("Rush", true);
         animator.SetBool("OnDetected", false);
         if (spriteRenderer.flipX)
             rigid.AddForce(Vector2.left * rushPower, ForceMode2D.Impulse);
         else 
             rigid.AddForce(Vector2.right * rushPower, ForceMode2D.Impulse);
 
-        yield return new WaitForSeconds(0.5f);
-        animator.SetTrigger("RushToIdle");
+        yield return new WaitForSeconds(1.0f);
+        animator.SetBool("Rush", false);
         enemyMove.canMove = true; // 돌진이 아닌 일반적인 움직임을 다시 작동시킴.
         enemyMove.switchFlipX = false;
 
-        yield return new WaitForSeconds(2.0f); // 돌진 이후 바로 연속적인 돌진을 못하게끔 2.5초라는 시간을 걸어둠.
+        yield return new WaitForSeconds(2.5f); // 돌진 이후 바로 연속적인 돌진을 못하게끔 2.5초라는 시간을 걸어둠.
 
         OnDetectPlayer = false;
         coroutineRoop = false;
