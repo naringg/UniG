@@ -26,6 +26,7 @@ public class EnemyMove : MonoBehaviour
 
     [SerializeField]bool OnDetectPlayer = false; // 적을 발견할 때 사용하는 변수
     bool keepingNoticeMark = false;
+    bool flyingMonster = false;
     int randomMoveNum;
 
     void Start()
@@ -33,6 +34,14 @@ public class EnemyMove : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         noticeMark.gameObject.SetActive(false);
+        foreach (Transform child in transform)
+    {
+        if (child.CompareTag("Flying"))
+        {
+            flyingMonster = true;
+            break;
+        }
+    }
         randomMoveNum = 0;
         StartCoroutine("RandomMove");
     }
@@ -76,7 +85,7 @@ public class EnemyMove : MonoBehaviour
         
         //-----------------------------------------------
 
-        if (!OnDetectPlayer) // Ray를 이용하여 낭떠러지 유무 체크.
+        if (!flyingMonster && !OnDetectPlayer) // Ray를 이용하여 낭떠러지 유무 체크.
         {
             Vector2 rayOrigin = new Vector2(rigid.position.x + (randomMoveNum * rayOffset), rigid.position.y - 1);
             Debug.DrawRay(rayOrigin, Vector2.down, Color.green);
