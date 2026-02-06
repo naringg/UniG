@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
+using System.Security.Cryptography.X509Certificates;
 
 public class EnemyMove : MonoBehaviour
 {
@@ -128,31 +129,8 @@ public class EnemyMove : MonoBehaviour
             rigid.linearVelocity = vecDir * speed;
         }
 
-        // 랜덤 이동 (지상 몬스터)
+        // 랜덤 이동
         else if (!OnDetectPlayer) {
-            /*switch (randomMoveNum)
-                {
-                    // -1 = 왼쪽 이동
-                    case -1:
-                        moving = true;
-                        rigid.linearVelocity = Vector2.left * randomMoveSpeed;
-                        break;
-                    // 1 = 오른쪽 이동
-                    case 1:
-                        moving = true;
-                        rigid.linearVelocity = Vector2.right * randomMoveSpeed;
-                        break;
-                    // 0 = 가만히 서있음
-                    case 0:
-                        moving = false;
-                        rigid.linearVelocity = Vector2.zero;
-                        break;
-                    // 혹시 몰라 넣어둠. 다른 숫자를 받으면 가만히 서있게 하기.
-                    default :
-                        moving = false;
-                        rigid.linearVelocity = Vector2.zero;
-                        break;
-                }*/
             rigid.linearVelocity = randomDir * randomMoveSpeed;
         }
     }
@@ -165,7 +143,6 @@ public class EnemyMove : MonoBehaviour
             {
                 if (flyingMonster)
                 {
-                    //randomMoveNum_Flying = Random.Range(-1, 2);
                     float x = Random.Range(-1, 2); 
                     float y = Random.Range(-1, 2);
                     randomDir = new Vector2(x, y).normalized;
@@ -173,8 +150,8 @@ public class EnemyMove : MonoBehaviour
 
                 else
                 {
-                    //randomMoveNum = Random.Range(-1, 2);
-                    randomDir = new Vector2(Random.Range(-1, 2), 0).normalized;
+                    float x = Random.Range(-1, 2);
+                    randomDir = new Vector2(x, 0).normalized;
                 }
             }
             yield return new WaitForSeconds(2.5f);
